@@ -1,9 +1,22 @@
-# Ambiente Virtual
+# Virtual Environment
 .venv/
+venv/
 
-#Cache
+# Python
 __pycache__/
-*.pyc/
+*.py[cod]
+*.pyo
 
-#Configurações PyCharme
+# IDE
 .idea/
+.vscode/
+
+# Environment
+.env
+
+# Reports
+reports/
+
+# Playwright
+playwright-report/
+test-results/
