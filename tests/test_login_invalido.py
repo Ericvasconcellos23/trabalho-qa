@@ -2,7 +2,7 @@ from pages.login_page import LoginPage
 from utils.constantes import SENHA_VALIDA, USUARIO_VALIDO
 
 
-def test_login_com_usuario_invalido(pagina):
+def test_login_com_usuario_invalida(pagina):
     login = LoginPage(pagina)
 
     login.acessar()
