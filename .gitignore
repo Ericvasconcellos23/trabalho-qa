@@ -20,3 +20,6 @@ reports/
 # Playwright
 playwright-report/
 test-results/
+
+# Evidências
+evidencias/
