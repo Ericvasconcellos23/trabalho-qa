@@ -1,6 +1,7 @@
 import pytest
 import json
 import os
+import allure
 from playwright.sync_api import sync_playwright
 
 
@@ -22,18 +23,43 @@ def pagina(request):
 
         if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
 
+            caminho_screenshot = f"evidencias/failed/{nome_teste}.png"
+
             pagina.screenshot(
-                path=f"evidencias/failed/{nome_teste}.png",
+                path=caminho_screenshot,
                 full_page=True
             )
 
+            allure.attach.file(
+                caminho_screenshot,
+                name="Screenshot da falha",
+                attachment_type=allure.attachment_type.PNG
+            )
+
+            video_path = pagina.video.path()
+
             contexto.close()
+
+            if os.path.exists(video_path):
+                allure.attach.file(
+                    video_path,
+                    name="Video da falha",
+                    attachment_type=allure.attachment_type.WEBM
+                )
 
         else:
 
+            caminho_screenshot = f"evidencias/passed/{nome_teste}.png"
+
             pagina.screenshot(
-                path=f"evidencias/passed/{nome_teste}.png",
+                path=caminho_screenshot,
                 full_page=True
+            )
+
+            allure.attach.file(
+                caminho_screenshot,
+                name="Screenshot do teste",
+                attachment_type=allure.attachment_type.PNG
             )
 
             video_path = pagina.video.path()
