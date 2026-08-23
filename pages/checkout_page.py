@@ -1,4 +1,5 @@
 from playwright.sync_api import Page
+from pages.checkout_overview_page import CheckoutOverviewPage
 
 class CheckoutPage:
 
@@ -23,4 +24,5 @@ class CheckoutPage:
         self.campo_cep.fill(cep)
 
     def continuar(self):
-        self.CheckoutOverviewPage(self.page)
+        self.botao_continue.click()
+        return CheckoutOverviewPage(self.page)
