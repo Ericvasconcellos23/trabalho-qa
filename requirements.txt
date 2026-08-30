@@ -1,5 +1,4 @@
-pytest
-playwright
-pytest-playwright
-faker
-requests
+pytest==9.1.1
+playwright==1.62.0
+requests==2.34.2
+allure-pytest==2.16.0
