@@ -1,8 +1,16 @@
+import json
+
 from pages.login_page import LoginPage
 from utils import constantes
 
 
 def test_checkout(pagina):
+
+    with open("fixtures/checkout.json") as arquivo:
+        dados_checkout = json.load(arquivo)
+
+    cliente = dados_checkout["cliente"]
+
     login = LoginPage(pagina)
 
     # Login
@@ -22,9 +30,9 @@ def test_checkout(pagina):
     checkout = carrinho.ir_para_checkout()
 
     # Preencher dados
-    checkout.preencher_nome("Eric")
-    checkout.preencher_sobrenome("Rocha")
-    checkout.preencher_cep("26000-000")
+    checkout.preencher_nome(cliente["nome"])
+    checkout.preencher_sobrenome(cliente["sobrenome"])
+    checkout.preencher_cep(cliente["cep"])
 
     # Continuar para revisão
     overview = checkout.continuar()
