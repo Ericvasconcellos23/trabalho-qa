@@ -4,7 +4,7 @@ from pages.login_page import LoginPage
 from utils import constantes
 
 
-def test_checkout(pagina):
+def test_cancelar_checkout(pagina):
 
     with open("fixtures/checkout.json") as arquivo:
         dados_checkout = json.load(arquivo)
@@ -20,7 +20,7 @@ def test_checkout(pagina):
         constantes.SENHA_VALIDA
     )
 
-    # Adicionar mochila ao carrinho
+    # Adicionar produto
     produtos.adicionar_mochila()
 
     # Abrir carrinho
@@ -34,17 +34,8 @@ def test_checkout(pagina):
     checkout.preencher_sobrenome(cliente["sobrenome"])
     checkout.preencher_cep(cliente["cep"])
 
-    # Continuar para revisão
-    overview = checkout.continuar()
+    # Cancelar checkout
+    checkout.cancelar_checkout()
 
-    # Validar página de revisão
-    assert overview.verificar_que_esta_no_overview() == "Checkout: Overview"
-
-    # Validar produto na revisão
-    assert overview.obter_nome_produto() == constantes.PRODUTO_MOCHILA
-
-    # Finalizar compra
-    overview.finalizar_compra()
-    
-    # Validar Compra finalizada
-    assert overview.obter_mensagem_sucesso() == "Thank you for your order!"
+    # Validar retorno ao carrinho
+    assert pagina.locator(".title").text_content() == "Your Cart"

@@ -6,13 +6,17 @@ class CheckoutPage:
     def __init__(self, page: Page):
         self.page = page
 
+        # Campos do formulário de checkout
         self.campo_nome = page.locator("#first-name")
         self.campo_sobrenome = page.locator("#last-name")
         self.campo_cep = page.locator("#postal-code")
-
+      
+        # Mensagem de erro
         self.mensagem_erro = page.locator("[data-test='error']")
 
+        # Botões
         self.botao_continue = page.locator("#continue")
+        self.botao_cancelar = page.locator("#cancel")
 
     def preencher_nome(self, nome):
         self.campo_nome.fill(nome)
@@ -29,4 +33,7 @@ class CheckoutPage:
     def continuar(self):
         self.botao_continue.click()
         return CheckoutOverviewPage(self.page)
+
+    def cancelar_checkout(self):
+        self.botao_cancelar.click()
     
