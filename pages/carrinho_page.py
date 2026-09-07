@@ -28,3 +28,6 @@ class CarrinhoPage:
 
     def quantidade_itens(self):
         return self.itens.count()
+
+    def obter_nomes_produtos(self):
+        return self.nome_produto.all_text_contents()

@@ -15,6 +15,9 @@ class ProdutosPage:
     def adicionar_mochila(self):
         self.botao_mochila.click()
 
+    def adicionar_produto(self, id_produto):
+        self.page.locator(f"#{id_produto}").click()
+
     def abrir_carrinho(self):
         self.botao_carrinho.click()
         return CarrinhoPage(self.page)
