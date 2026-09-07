@@ -43,6 +43,12 @@ def test_checkout(pagina):
     # Validar produto na revisão
     assert overview.obter_nome_produto() == constantes.PRODUTO_MOCHILA
 
+    # Validar valores da compra
+    assert overview.obter_preco_produto() == "$29.99"
+    assert overview.obter_subtotal() == "Item total: $29.99"
+    assert overview.obter_taxa() == "Tax: $2.40"
+    assert overview.obter_total() == "Total: $32.39"
+
     # Finalizar compra
     overview.finalizar_compra()
     
